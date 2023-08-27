@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
 
 export default function SignupPage() {
@@ -19,6 +20,7 @@ export default function SignupPage() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
+      toast.success("Signup successful");
       router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
@@ -59,6 +61,7 @@ export default function SignupPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <Toaster />
       <h1>{loading ? "Loading..." : "Signup"}</h1>
       <hr />
       <label htmlFor="username">Username</label>
