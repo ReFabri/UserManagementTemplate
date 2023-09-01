@@ -16,8 +16,6 @@ export default function VerifyEmailPage() {
       setVerified(true);
     } catch (error: any) {
       setError(true);
-      //TODO remove clg
-      console.log(error.response.data);
     }
   }, [token]);
 
