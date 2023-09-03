@@ -72,6 +72,9 @@ export default function LoginPage() {
         onChange={passwordHandler}
         placeholder="password"
       />
+      <p className="text-center text-sm pb-4">
+        <Link href="/passwordrecovery">forgot password</Link>
+      </p>
 
       <button
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
