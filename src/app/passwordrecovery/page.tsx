@@ -24,7 +24,7 @@ export default function PasswordRecoveryPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Toaster />
-      <h1>Recover your password.</h1>
+      <h1>{loading ? "Loading.." : "Recover your password"}</h1>
       <label htmlFor="email">Enter your email</label>
       <input
         className="text-black p-2"
