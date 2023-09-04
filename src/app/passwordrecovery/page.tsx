@@ -4,10 +4,17 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 export default function PasswordRecoveryPage() {
-  const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
-  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [disabled, setButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    if (email.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [email]);
 
   const resetPassButtonHandler = async () => {
     try {
