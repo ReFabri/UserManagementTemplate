@@ -50,7 +50,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Toaster />
-      <h1>{loading ? "Loading..." : "Login"}</h1>
+      <h1 className="mb-3 text-xl">{loading ? "Loading..." : "Login"}</h1>
       <hr />
 
       <label htmlFor="email">Email</label>
