@@ -2,18 +2,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
+import Button from "../_components/Button";
 
 export default function PasswordRecoveryPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [disabled, setButtonDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (email.length > 0) {
-      setButtonDisabled(false);
+      setIsDisabled(false);
     } else {
-      setButtonDisabled(true);
+      setIsDisabled(true);
     }
   }, [email]);
 
@@ -45,13 +46,9 @@ export default function PasswordRecoveryPage() {
         type="email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={resetPassButtonHandler}
-        disabled={disabled}
-      >
+      <Button onClick={resetPassButtonHandler} disabled={isDisabled}>
         Reset password
-      </button>
+      </Button>
       {success && (
         <p className="w-1/3 p-6 mt-4 border border-green-600 rounded-lg mb-4 focus:outline-none text-center">
           An email has been sent to the email address provided, check your inbox

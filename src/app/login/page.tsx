@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
+import Button from "../_components/Button";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
-  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+  const [isDisabled, setIsDisabled] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
   const onLogin = async () => {
@@ -30,9 +31,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (user.email.length > 0 && user.password.length > 0) {
-      setButtonDisabled(false);
+      setIsDisabled(false);
     } else {
-      setButtonDisabled(true);
+      setIsDisabled(true);
     }
   }, [user]);
 
@@ -75,14 +76,9 @@ export default function LoginPage() {
       <p className="text-center text-sm pb-4">
         <Link href="/passwordrecovery">forgot password</Link>
       </p>
-
-      <button
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={onLogin}
-        disabled={buttonDisabled}
-      >
-        {buttonDisabled ? "Enter data" : "Login"}
-      </button>
+      <Button onClick={onLogin} disabled={isDisabled}>
+        {isDisabled ? "Enter data" : "Login"}
+      </Button>
       <Link href="/signup">Signup page</Link>
     </div>
   );

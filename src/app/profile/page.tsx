@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import Button from "../_components/Button";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -36,19 +37,10 @@ export default function ProfilePage() {
           <Link href={`/profile/${user}`}>Go to user profile</Link>
         )}
       </h2>
-      <hr />
-      <button
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={logoutHandler}
-      >
+      <Button className="mt-6" onClick={logoutHandler}>
         Logout
-      </button>
-      <button
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={getUserDetails}
-      >
-        Get User details
-      </button>
+      </Button>
+      <Button onClick={getUserDetails}>Get user details</Button>
     </div>
   );
 }

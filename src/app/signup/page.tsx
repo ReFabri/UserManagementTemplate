@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
+import Button from "../_components/Button";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function SignupPage() {
     password: "",
     username: "",
   });
-  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+  const [isDisabled, setIsDisabled] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
   const onSignup = async () => {
@@ -35,9 +36,9 @@ export default function SignupPage() {
       user.password.length > 0 &&
       user.username.length > 0
     ) {
-      setButtonDisabled(false);
+      setIsDisabled(false);
     } else {
-      setButtonDisabled(true);
+      setIsDisabled(true);
     }
   }, [user]);
 
@@ -93,14 +94,9 @@ export default function SignupPage() {
         onChange={passwordHandler}
         placeholder="password"
       />
-
-      <button
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={onSignup}
-        disabled={buttonDisabled}
-      >
-        {buttonDisabled ? "No signup" : "Signup"}
-      </button>
+      <Button onClick={onSignup} disabled={isDisabled}>
+        Signup
+      </Button>
       <Link href="/login">Login page</Link>
     </div>
   );

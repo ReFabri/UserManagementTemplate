@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import Button from "../_components/Button";
 
 export default function ResetPasswordPage() {
   const [token, setToken] = useState("");
@@ -86,13 +87,10 @@ export default function ResetPasswordPage() {
         onChange={confirmPasswordHandler}
         placeholder="confirm password"
       />
-      <button
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={changePasswordHandler}
-        disabled={isDisabled}
-      >
+      <Button onClick={changePasswordHandler} disabled={isDisabled}>
         Create new password
-      </button>
+      </Button>
+
       {success && (
         <p className="w-1/3 p-6 mt-4 border border-green-600 rounded-lg mb-4 focus:outline-none text-center">
           Your password has been changed successfully, go to{" "}
