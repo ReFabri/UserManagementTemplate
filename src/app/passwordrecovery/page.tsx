@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
+import LabelAndInput from "../_components/LabelAndInput";
 
 export default function PasswordRecoveryPage() {
   const [email, setEmail] = useState("");
@@ -37,15 +38,17 @@ export default function PasswordRecoveryPage() {
       <h1 className="mb-3 text-xl">
         {loading ? "Loading.." : "Recover your password"}
       </h1>
-      <label htmlFor="email" className="mb-2">
-        Enter your email
-      </label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+
+      <LabelAndInput
         id="email"
         type="email"
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
-      />
+        placeholder="email"
+      >
+        Enter your email
+      </LabelAndInput>
+
       <Button onClick={resetPassButtonHandler} disabled={isDisabled}>
         Reset password
       </Button>

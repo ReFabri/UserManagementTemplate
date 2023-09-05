@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import Button from "../_components/Button";
+import LabelAndInput from "../_components/LabelAndInput";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -52,27 +53,27 @@ export default function LoginPage() {
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Toaster />
       <h1 className="mb-3 text-xl">{loading ? "Loading..." : "Login"}</h1>
-      <hr />
 
-      <label htmlFor="email">Email</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+      <LabelAndInput
         id="email"
         type="email"
         value={user.email}
         onChange={emailHandler}
         placeholder="email"
-      />
+      >
+        Email
+      </LabelAndInput>
 
-      <label htmlFor="password">Password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+      <LabelAndInput
         id="password"
         type="password"
         value={user.password}
         onChange={passwordHandler}
         placeholder="password"
-      />
+      >
+        password
+      </LabelAndInput>
+
       <p className="text-center text-sm pb-4">
         <Link href="/passwordrecovery">forgot password</Link>
       </p>

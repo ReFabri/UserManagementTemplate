@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
+import LabelAndInput from "../_components/LabelAndInput";
 
 export default function ResetPasswordPage() {
   const [token, setToken] = useState("");
@@ -69,24 +70,27 @@ export default function ResetPasswordPage() {
       <h1 className="mb-3 text-xl">
         {loading ? "Loading.." : "Create new password"}
       </h1>
-      <label htmlFor="password">Password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+
+      <LabelAndInput
         id="password"
         type="password"
         value={user.password}
         onChange={passwordHandler}
         placeholder="password"
-      />
-      <label htmlFor="password">Confirm password</label>
-      <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+      >
+        Password
+      </LabelAndInput>
+
+      <LabelAndInput
         id="confirmPassword"
         type="password"
         value={user.confirmPassword}
         onChange={confirmPasswordHandler}
         placeholder="confirm password"
-      />
+      >
+        Confirm password
+      </LabelAndInput>
+
       <Button onClick={changePasswordHandler} disabled={isDisabled}>
         Create new password
       </Button>

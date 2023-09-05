@@ -28,7 +28,6 @@ export default function ProfilePage() {
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Toaster />
       <h1>Profile</h1>
-      <hr />
       <p>Profile page</p>
       <h2 className="p-1 rounded bg-green-500">
         {user === null ? (
