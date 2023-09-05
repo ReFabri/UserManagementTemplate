@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, MouseEvent } from "react";
 
 interface ButtonProps {
   className?: string;
   children: ReactNode;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,9 +13,12 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   onClick,
 }) => {
+  const defaultClasses =
+    "p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600";
+
   return (
     <button
-      className={`p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 ${className}`}
+      className={`${defaultClasses} ${className}`}
       disabled={disabled}
       onClick={onClick}
     >
