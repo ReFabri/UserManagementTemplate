@@ -52,10 +52,13 @@ export default function PasswordRecoveryPage() {
         Reset password
       </Button>
       {success && (
-        <p className="w-1/3 p-6 mt-4 border border-green-600 rounded-lg mb-4 focus:outline-none text-center">
-          An email has been sent to the email address provided, check your inbox
-          for a link to recover your password.
-        </p>
+        <div className="w-1/2 p-6 mt-4 border border-green-600 rounded-lg mb-4 focus:outline-none text-center">
+          <h2 className="text-center text-2xl mb-4">Email sent</h2>
+          <p className="text-center">
+            An email has been sent to the email address provided, check your
+            inbox for a link to recover your password.
+          </p>
+        </div>
       )}
     </FormContainer>
   );
