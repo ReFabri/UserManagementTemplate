@@ -45,11 +45,10 @@ export default function ResetPasswordPage() {
         token,
         password: user.password,
       });
-
       setSuccess(res.data.success || false);
       success && toast.success("password changed successfully");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data.error);
     } finally {
       setIsLoading(false);
     }

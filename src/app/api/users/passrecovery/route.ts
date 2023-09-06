@@ -64,15 +64,21 @@ export async function POST(request: NextRequest) {
       user.forgotPasswordTokenExpiry = undefined;
       await user.save();
 
-      return NextResponse.json({
-        message: "Email verified successfully",
-        success: true,
-      });
+      return NextResponse.json(
+        {
+          message: "Email verified successfully",
+          success: true,
+        },
+        { status: 200 }
+      );
     } else {
-      return NextResponse.json({
-        error: `Invalid ${email ? "email" : "token"}`,
-        success: false,
-      });
+      return NextResponse.json(
+        {
+          error: `Invalid ${email ? "email" : "token"}`,
+          success: false,
+        },
+        { status: 400 }
+      );
     }
   } catch (error: any) {
     NextResponse.json({ error: error.message }, { status: 500 });

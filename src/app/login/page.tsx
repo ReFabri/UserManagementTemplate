@@ -26,7 +26,7 @@ export default function LoginPage() {
       toast.success("Login successful");
       router.push("/profile");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data.error);
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +80,7 @@ export default function LoginPage() {
         <Link href="/passwordrecovery">forgot password</Link>
       </p>
       <Button onClick={onLogin} disabled={isDisabled}>
-        {isDisabled ? "Enter data" : "Login"}
+        Login
       </Button>
       <Link href="/signup">Signup page</Link>
     </FormContainer>

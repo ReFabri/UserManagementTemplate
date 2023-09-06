@@ -28,7 +28,7 @@ export default function PasswordRecoveryPage() {
       toast.success("An email has been sent to recover your password");
       setSuccess(true);
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data.error);
     } finally {
       setIsLoading(false);
     }
