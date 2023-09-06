@@ -41,12 +41,13 @@ export default function ResetPasswordPage() {
         return toast.error("Insert the same password in both fields");
       }
       setIsLoading(true);
-      const request = await axios.post("/api/users/passrecovery", {
+      const res = await axios.post("/api/users/passrecovery", {
         token,
         password: user.password,
       });
-      setSuccess(true);
-      toast.success("password changed successfully");
+
+      setSuccess(res.data.success || false);
+      success && toast.success("password changed successfully");
     } catch (error: any) {
       toast.error(error.message);
     } finally {

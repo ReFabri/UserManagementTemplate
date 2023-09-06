@@ -15,17 +15,23 @@ export async function POST(request: NextRequest) {
       const user = await User.findOne({ email });
 
       if (!user) {
-        return NextResponse.json({
-          error: "No user registered with this email",
-        });
+        return NextResponse.json(
+          {
+            error: "No user registered with this email",
+          },
+          { status: 400 }
+        );
       }
 
       sendEmail({ email, emailType: "RESET", userId: user._id });
 
-      return NextResponse.json({
-        message: "A recovery email was sent, please check your email inbox",
-        success: true,
-      });
+      return NextResponse.json(
+        {
+          message: "A recovery email was sent, please check your email inbox",
+          success: true,
+        },
+        { status: 200 }
+      );
     } else if (token && !email) {
       const user = await User.findOne({
         forgotPasswordToken: token,
@@ -36,6 +42,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             error: "Invalid token",
+            success: false,
           },
           { status: 400 }
         );
@@ -44,6 +51,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             error: "Invalid password",
+            success: false,
           },
           { status: 400 }
         );
@@ -58,10 +66,12 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         message: "Email verified successfully",
+        success: true,
       });
     } else {
       return NextResponse.json({
         error: `Invalid ${email ? "email" : "token"}`,
+        success: false,
       });
     }
   } catch (error: any) {
