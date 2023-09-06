@@ -12,12 +12,13 @@ const FormContainer: React.FC<FormContainerProps> = ({
   formName,
 }) => {
   const defaultClassName =
-    "flex flex-col items-center justify-center min-h-screen py-2";
-
+    "flex flex-col items-center justify-center min-h-min p-4 relative";
   return (
-    <div className={`${defaultClassName} ${className}`}>
-      {formName && <h1 className="mb-3 text-xl">{formName}</h1>}
-      {children}
+    <div className="flex flex-col items-center justify-center min-h-screen relative">
+      <div className={`${defaultClassName} ${className}`}>
+        {formName && <h1 className="mb-3 text-xl">{formName}</h1>}
+        {children}
+      </div>
     </div>
   );
 };

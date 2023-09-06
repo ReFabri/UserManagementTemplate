@@ -5,10 +5,11 @@ import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
 import FormContainer from "../_components/FormContainer";
+import LoadingSpinner from "../_components/LoadingSpinner";
 
 export default function PasswordRecoveryPage() {
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
 
@@ -22,21 +23,21 @@ export default function PasswordRecoveryPage() {
 
   const resetPassButtonHandler = async () => {
     try {
-      setLoading(true);
+      setIsLoading(true);
       await axios.post("/api/users/passrecovery", { email });
       toast.success("An email has been sent to recover your password");
       setSuccess(true);
     } catch (error: any) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <FormContainer formName="Recover your password">
       <Toaster toastOptions={{ duration: 10000 }} />
-
+      {isLoading && <LoadingSpinner />}
       <LabelAndInput
         id="email"
         type="email"

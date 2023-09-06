@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
 import FormContainer from "../_components/FormContainer";
+import LoadingSpinner from "../_components/LoadingSpinner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,18 +17,18 @@ export default function LoginPage() {
     password: "",
   });
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [loading, setLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onLogin = async () => {
     try {
-      setLoading(true);
-      const response = await axios.post("/api/users/login", user);
+      setIsLoading(true);
+      await axios.post("/api/users/login", user);
       toast.success("Login successful");
       router.push("/profile");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -53,6 +54,7 @@ export default function LoginPage() {
   return (
     <FormContainer formName="Login">
       <Toaster />
+      {isLoading && <LoadingSpinner />}
 
       <LabelAndInput
         id="email"

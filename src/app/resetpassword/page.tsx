@@ -6,6 +6,7 @@ import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
 import FormContainer from "../_components/FormContainer";
+import LoadingSpinner from "../_components/LoadingSpinner";
 
 export default function ResetPasswordPage() {
   const [token, setToken] = useState("");
@@ -13,7 +14,7 @@ export default function ResetPasswordPage() {
   const [user, setUser] = useState(userInitialState);
   const [isDisabled, setIsDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
@@ -39,7 +40,7 @@ export default function ResetPasswordPage() {
       ) {
         return toast.error("Insert the same password in both fields");
       }
-      setLoading(true);
+      setIsLoading(true);
       const request = await axios.post("/api/users/passrecovery", {
         token,
         password: user.password,
@@ -49,7 +50,7 @@ export default function ResetPasswordPage() {
     } catch (error: any) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -68,7 +69,7 @@ export default function ResetPasswordPage() {
   return (
     <FormContainer formName="Create new password">
       <Toaster toastOptions={{ duration: 10000 }} />
-
+      {isLoading && <LoadingSpinner />}
       <LabelAndInput
         id="password"
         type="password"
