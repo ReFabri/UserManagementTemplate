@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
+import FormContainer from "../_components/FormContainer";
 
 export default function ResetPasswordPage() {
   const [token, setToken] = useState("");
@@ -65,11 +66,8 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <FormContainer formName="Create new password">
       <Toaster toastOptions={{ duration: 10000 }} />
-      <h1 className="mb-3 text-xl">
-        {loading ? "Loading.." : "Create new password"}
-      </h1>
 
       <LabelAndInput
         id="password"
@@ -104,6 +102,6 @@ export default function ResetPasswordPage() {
           page to access your account.
         </p>
       )}
-    </div>
+    </FormContainer>
   );
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
+import FormContainer from "../_components/FormContainer";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -25,10 +26,8 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <FormContainer formName="Profile">
       <Toaster />
-      <h1>Profile</h1>
-      <p>Profile page</p>
       <h2 className="p-1 rounded bg-green-500">
         {user === null ? (
           "No user"
@@ -40,6 +39,6 @@ export default function ProfilePage() {
         Logout
       </Button>
       <Button onClick={getUserDetails}>Get user details</Button>
-    </div>
+    </FormContainer>
   );
 }

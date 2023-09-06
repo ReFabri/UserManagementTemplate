@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { toast } from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
+import FormContainer from "../_components/FormContainer";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -62,9 +63,8 @@ export default function SignupPage() {
   //TODO Improve validation for username, email and password fields.
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <FormContainer formName="Signup">
       <Toaster />
-      <h1>{loading ? "Loading..." : "Signup"}</h1>
 
       <LabelAndInput
         id="username"
@@ -100,6 +100,6 @@ export default function SignupPage() {
         Signup
       </Button>
       <Link href="/login">Login page</Link>
-    </div>
+    </FormContainer>
   );
 }

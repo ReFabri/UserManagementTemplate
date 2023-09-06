@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
+import FormContainer from "../_components/FormContainer";
 
 export default function PasswordRecoveryPage() {
   const [email, setEmail] = useState("");
@@ -33,11 +34,8 @@ export default function PasswordRecoveryPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <FormContainer formName="Recover your password">
       <Toaster toastOptions={{ duration: 10000 }} />
-      <h1 className="mb-3 text-xl">
-        {loading ? "Loading.." : "Recover your password"}
-      </h1>
 
       <LabelAndInput
         id="email"
@@ -58,6 +56,6 @@ export default function PasswordRecoveryPage() {
           for a link to recover your password.
         </p>
       )}
-    </div>
+    </FormContainer>
   );
 }

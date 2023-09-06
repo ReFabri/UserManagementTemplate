@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 import Button from "../_components/Button";
 import LabelAndInput from "../_components/LabelAndInput";
+import FormContainer from "../_components/FormContainer";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -50,9 +51,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <FormContainer formName="Login">
       <Toaster />
-      <h1 className="mb-3 text-xl">{loading ? "Loading..." : "Login"}</h1>
 
       <LabelAndInput
         id="email"
@@ -81,6 +81,6 @@ export default function LoginPage() {
         {isDisabled ? "Enter data" : "Login"}
       </Button>
       <Link href="/signup">Signup page</Link>
-    </div>
+    </FormContainer>
   );
 }
