@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -12,19 +12,20 @@ import LoadingSpinner from "../_components/LoadingSpinner";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  const [isDisabled, setIsDisabled] = React.useState(true);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onLogin = async () => {
     try {
       setIsLoading(true);
       await axios.post("/api/users/login", user);
+      const res = await axios.get("/api/users/me");
       toast.success("Login successful");
-      router.push("/profile");
+      router.push(`/profile/${res.data._id}`);
     } catch (error: any) {
       toast.error(error.response.data.error);
     } finally {
