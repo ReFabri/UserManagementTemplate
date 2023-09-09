@@ -5,9 +5,11 @@ import FormContainer from "@/app/_components/FormContainer";
 import Button from "@/app/_components/Button";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "@/app/_components/LoadingSpinner";
 
 export default function ProfileIdPage({ params }: any) {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({
     _id: "",
     username: "",
@@ -17,6 +19,7 @@ export default function ProfileIdPage({ params }: any) {
 
   useEffect(() => {
     const getUserDetails = async () => {
+      setIsLoading(true);
       const response = await axios.get("/api/users/me");
       setUser((prevData) => {
         return {
@@ -27,12 +30,14 @@ export default function ProfileIdPage({ params }: any) {
           isVerified: response.data.isVerified,
         };
       });
+      setIsLoading(false);
     };
     getUserDetails();
   }, []);
 
   const logoutHandler = async () => {
     try {
+      setIsLoading(true);
       const res = await axios.get("/api/users/logout");
       toast.success(res.data.message);
       setTimeout(() => {
@@ -40,11 +45,14 @@ export default function ProfileIdPage({ params }: any) {
       }, 2000);
     } catch (error: any) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const verifyEmailHandler = async () => {
     try {
+      setIsLoading(true);
       const userData = {
         email: user.email,
         emailType: "VERIFY",
@@ -57,6 +65,8 @@ export default function ProfileIdPage({ params }: any) {
       toast.success(res.data.message);
     } catch (error: any) {
       toast.error(error.response.data.error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,8 +76,9 @@ export default function ProfileIdPage({ params }: any) {
   };
 
   return (
-    <FormContainer formName="Profile">
+    <FormContainer formName="Your profile">
       <Toaster />
+      {isLoading && <LoadingSpinner />}
       <div className="grid grid-cols-2">
         <h2 className={itemStyle.item}>Username</h2>
         <h2 className={itemStyle.value}>{user.username}</h2>
