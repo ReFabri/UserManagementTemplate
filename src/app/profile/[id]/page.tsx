@@ -71,8 +71,9 @@ export default function ProfileIdPage({ params }: any) {
   };
 
   const itemStyle = {
-    item: "text-xl m-2",
-    value: "p-2 m-2 ml-6 rounded bg-orange-500 text-black text-center text-xl",
+    item: "text-xl py-4 m-2",
+    value:
+      "text-center m-2 border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-4 backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit rounded-xl border lg:px-4 md:px-2",
   };
 
   return (
